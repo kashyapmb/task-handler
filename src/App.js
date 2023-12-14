@@ -5,6 +5,7 @@ import { AiOutlineDelete } from "react-icons/ai"
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md"
 import { BsCheckLg } from "react-icons/bs"
 import { Button } from "react-bootstrap"
+import { LuFileEdit } from "react-icons/lu"
 
 function App() {
 	const [allTodos, setAllTodos] = useState([])
@@ -19,8 +20,8 @@ function App() {
 
 	const [reqStr1, setReqStr1] = useState("")
 	const [reqStr2, setReqStr2] = useState("")
-	const [boxColor1, setBoxColor1] = useState("#27c9d7")
-	const [boxColor2, setBoxColor2] = useState("#27c9d7")
+	const [boxColor1, setBoxColor1] = useState("#660c20")
+	const [boxColor2, setBoxColor2] = useState("#660c20")
 
 	const handleEdit = (index) => {
 		setNewTodoTitle(allTodos[index].title)
@@ -61,15 +62,15 @@ function App() {
 			setReqStr1("*Required")
 		} else if (newDescription == "") {
 			if (newTodoTitle != "") {
-				setBoxColor1("#27c9d7")
+				setBoxColor1("#660c20")
 				setReqStr1("")
 			}
 			setBoxColor2("red")
 			setReqStr2("*Required")
 		} else {
-			setBoxColor1("#27c9d7")
+			setBoxColor1("#660c20")
 			setReqStr1("")
-			setBoxColor2("#27c9d7")
+			setBoxColor2("#660c20")
 			setReqStr2("")
 			let newToDoObj = {
 				title: newTodoTitle,
@@ -260,34 +261,30 @@ function App() {
 								</div>
 								<div></div>
 								<div>
-									<button
-										style={{
-											marginBottom: "20px",
-											marginRight: "10px",
-											height: "1.5rem",
-											width: "3rem",
-										}}
+									<LuFileEdit
+										style={{ cursor: "pointer", marginRight: "10px" }}
 										onClick={() => handleEdit(index)}
-										className="edit-btn"
-									>
-										Edit
-									</button>
+										size={25}
+									/>
 									<AiOutlineDelete
 										title="Delete?"
 										className="icon"
 										onClick={() => handleToDoDelete(index)}
+										size={30}
 									/>
 									{item.completed && (
 										<BsCheckLg
 											title="Completed?"
 											className=" check-icon"
 											onClick={() => rchecked(index)}
+											size={27}
 										/>
 									)}
 									{!item.completed && (
 										<MdOutlineCheckBoxOutlineBlank
 											className="check-icon"
 											onClick={() => checked(index)}
+											size={27}
 										/>
 									)}
 								</div>
@@ -331,23 +328,27 @@ function App() {
                           checked={false} // You can set the default value based on your logic
                           onChange={() => handleNotCompletedCheckbox(index)}
                         /> */}
+												<AiOutlineDelete
+													title="Delete?"
+													className="icon"
+													onClick={() => handleToDoDelete(index)}
+													size={30}
+												/>
 												{item.completed && (
 													<BsCheckLg
 														title="Completed?"
 														className=" check-icon"
 														onClick={() => rchecked(index)}
+														size={27}
 													/>
 												)}
 												{!item.completed && (
 													<MdOutlineCheckBoxOutlineBlank
 														className="check-icon"
 														onClick={() => checked(index)}
+														size={27}
 													/>
 												)}
-												<AiOutlineDelete
-													className="icon"
-													onClick={() => handleNotCompletedTodoDelete(index)}
-												/>
 											</div>
 										</div>
 									</>
@@ -364,6 +365,7 @@ function App() {
 						<div className="modal-body">
 							<label>Title:</label>
 							<input
+              style={{marginLeft:'70px'}}
 								type="text"
 								value={newTodoTitle}
 								onChange={(e) => setNewTodoTitle(e.target.value)}
